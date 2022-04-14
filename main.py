@@ -28,6 +28,6 @@ while True:
 			else:
 				print(channelName + ' is not currently streaming!')
 	
-	print (datetime.today().strftime('%H:%M'  " GMT"), datetime.today().strftime('    %d-%m-%Y'))
+	print (datetime.today().strftime('%H:%M:%S'  " GMT"), datetime.today().strftime('    %d-%m-%Y'))
 	print("-----------------------------------------------------------------")
 	time.sleep(15.0 - ((time.time() - starttime) % 15.0))
