@@ -1,21 +1,33 @@
 import requests
+from datetime import datetime
+import time
 
-channelName = 'STREAMERNAME'
+current_time = datetime.now()
+starttime = time.time()
 
-contents = requests.get('https://www.twitch.tv/' +channelName).content.decode('utf-8')
-
-special_characters = "\"!@#$%^&*()-+?_=,<>/\""
-
-if ' ' in channelName:
-	print("That channel does not exist!")
-
-else:
+while True:
+	channelName = 'xqcow'
 	
-	if any (c in special_characters for c in channelName):
+	contents = requests.get('https://www.twitch.tv/' +channelName).content.decode('utf-8')
+	
+	special_characters = "\"!@#$%^&*()-+?_=,<>/\""
+	
+	if ' ' in channelName:
 		print("That channel does not exist!")
 	
 	else:
-		if 'isLiveBroadcast' in contents:
-			print(channelName + ' is live')
+		
+		if any (c in special_characters for c in channelName):
+			print("That channel does not exist!")
+		
 		else:
-			print(channelName + ' is not live')
+			
+			if 'isLiveBroadcast' in contents:
+				print("-----------------------------------------------------------------")
+				print(channelName + ' is currently streaming!')
+			else:
+				print(channelName + ' is not currently streaming!')
+	
+	print (datetime.today().strftime('%H:%M'  " GMT"), datetime.today().strftime('    %d-%m-%Y'))
+	print("-----------------------------------------------------------------")
+	time.sleep(15.0 - ((time.time() - starttime) % 15.0))
