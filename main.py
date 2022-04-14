@@ -1,8 +1,6 @@
-print("NUMBER ONE... WORKING...")
 import requests
 
 channelName = 'STREAMERNAME'
-print("NUMBER TWO... WORKING...")
 
 contents = requests.get('https://www.twitch.tv/' +channelName).content.decode('utf-8')
 
