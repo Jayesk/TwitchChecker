@@ -1,7 +1,7 @@
 import requests
 
 
-channelName = 'loltyler1'
+channelName = 'STREAMER NAME'
 
 contents = requests.get('https://www.twitch.tv/' +channelName).content.decode('utf-8')
 
