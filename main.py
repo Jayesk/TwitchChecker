@@ -13,7 +13,7 @@ channelName = twitchuser
 	
 contents = requests.get('https://www.twitch.tv/' +channelName).content.decode('utf-8')
 	
-special_characters = "\"!@#$%^&*()-+?_=,<>/\""
+special_characters = "\"!@#$£%^&*()-+?_=,<>/\""
 
 
 
