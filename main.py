@@ -1,36 +1,50 @@
 from datetime import datetime
 import time
 import requests
-
+	
 current_time = datetime.now()
 starttime = time.time()
 
-print("Twitch Username:")
+twitchuser = input("Twitch Username: ")
 
-while True:
-	channelName = str(input())
+print("Checking " + twitchuser + "...")
+
+channelName = twitchuser
 	
-	contents = requests.get('https://www.twitch.tv/' +channelName).content.decode('utf-8')
+contents = requests.get('https://www.twitch.tv/' +channelName).content.decode('utf-8')
 	
-	special_characters = "\"!@#$%^&*()-+?_=,<>/\""
+special_characters = "\"!@#$%^&*()-+?_=,<>/\""
+
+
+
+if ' ' in channelName:
+	print("------------------------------------------------")
+	print("That channel does not exist!")
+	print (datetime.today().strftime('%H:%M:%S'  " GMT"), datetime.today().strftime('     %d-%m-%Y'))
+	print("------------------------------------------------")
 	
-	if ' ' in channelName:
+else:
+		
+	if any (c in special_characters for c in channelName):
+		print("------------------------------------------------")
 		print("That channel does not exist!")
-	
+		print (datetime.today().strftime('%H:%M:%S'  " GMT"), datetime.today().strftime('     %d-%m-%Y'))
+		print("------------------------------------------------")
+		
 	else:
-		
-		if any (c in special_characters for c in channelName):
-			print("That channel does not exist!")
-		
-		else:
+
+		while True:
 			
 			if 'isLiveBroadcast' in contents:
 				print("------------------------------------------------")
 				print(channelName + ' is currently streaming!')
+				print (datetime.today().strftime('%H:%M:%S'  " GMT"), datetime.today().strftime('     %d-%m-%Y'))
+				print("------------------------------------------------")
+				
 			else:
 				print("------------------------------------------------")
 				print(channelName + ' is not currently streaming!')
+				print (datetime.today().strftime('%H:%M:%S'  " GMT"), datetime.today().strftime('     %d-%m-%Y'))
+				print("------------------------------------------------")
 	
-	print (datetime.today().strftime('%H:%M:%S'  " GMT"), datetime.today().strftime('      %d-%m-%Y'))
-	print("------------------------------------------------")
-	time.sleep(15.0 - ((time.time() - starttime) % 15.0))
+			time.sleep(15.0 - ((time.time() - starttime) % 15.0))
